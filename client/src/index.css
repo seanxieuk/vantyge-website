@@ -13,8 +13,8 @@
   --card-foreground: hsl(0, 0%, 0%);
   --border: hsl(0, 0%, 90%);
   --input: hsl(0, 0%, 90%);
-  --primary: hsl(221, 100%, 50%);
-  --primary-foreground: hsl(0, 0%, 100%);
+  --primary: hsl(84, 100%, 45%);
+  --primary-foreground: hsl(0, 0%, 0%);
   --secondary: hsl(0, 0%, 96%);
   --secondary-foreground: hsl(0, 0%, 9%);
   --accent: hsl(0, 0%, 96%);
@@ -23,11 +23,12 @@
   --destructive-foreground: hsl(0, 0%, 98%);
   --ring: hsl(0, 0%, 0%);
   --radius: 0.5rem;
-  --vantyge-blue: hsl(221, 100%, 50%);
+  --vantyge-primary: hsl(84, 100%, 45%);
+  --vantyge-secondary: hsl(73, 85%, 55%);
   --vantyge-black: hsl(0, 0%, 0%);
   --vantyge-gray: hsl(0, 0%, 45%);
   --vantyge-light: hsl(0, 0%, 97%);
-  --vantyge-success: hsl(158, 64%, 52%);
+  --vantyge-success: hsl(84, 100%, 45%);
 }
 
 .dark {
@@ -41,8 +42,8 @@
   --card-foreground: hsl(0, 0%, 98%);
   --border: hsl(240, 4%, 16%);
   --input: hsl(240, 4%, 16%);
-  --primary: hsl(221, 100%, 50%);
-  --primary-foreground: hsl(0, 0%, 100%);
+  --primary: hsl(84, 100%, 45%);
+  --primary-foreground: hsl(0, 0%, 0%);
   --secondary: hsl(240, 4%, 16%);
   --secondary-foreground: hsl(0, 0%, 98%);
   --accent: hsl(240, 4%, 16%);
@@ -75,12 +76,20 @@
     transform: translateY(-4px);
   }
 
-  .vantyge-blue {
-    color: var(--vantyge-blue);
+  .vantyge-primary {
+    color: var(--vantyge-primary);
   }
 
-  .bg-vantyge-blue {
-    background-color: var(--vantyge-blue);
+  .bg-vantyge-primary {
+    background-color: var(--vantyge-primary);
+  }
+
+  .vantyge-secondary {
+    color: var(--vantyge-secondary);
+  }
+
+  .bg-vantyge-secondary {
+    background-color: var(--vantyge-secondary);
   }
 
   .vantyge-black {

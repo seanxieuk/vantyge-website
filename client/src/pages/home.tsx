@@ -143,24 +143,24 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="hero-gradient pt-24 pb-20 lg:pt-32 lg:pb-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="hero-gradient pt-24 pb-32 lg:pt-40 lg:pb-48 min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
               LinkedIn AI Agents for<br />
-              <span className="vantyge-blue">High-Growth B2B</span> Startups
+              <span className="text-lime-400">High-Growth B2B</span> Startups
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
+            <p className="text-xl md:text-3xl text-gray-200 max-w-5xl mx-auto mb-12 leading-relaxed">
               Vantyge Social plans, writes, and schedules LinkedIn posts for your entire company. 
               Empower every team member to share high-quality, authentic content — and turn your whole company into LinkedIn thought leaders.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Button 
                 size="lg"
                 onClick={() => setIsContactOpen(true)}
-                className="bg-vantyge-blue text-white px-8 py-4 text-lg font-semibold hover:bg-blue-700 transform hover:scale-105 transition-all"
+                className="bg-lime-400 text-black px-10 py-6 text-xl font-bold hover:bg-lime-300 transform hover:scale-105 transition-all shadow-lg"
               >
                 Start Free Trial
               </Button>
@@ -168,15 +168,15 @@ export default function Home() {
                 variant="outline"
                 size="lg"
                 onClick={() => setIsContactOpen(true)}
-                className="border-2 border-white text-white px-8 py-4 text-lg font-semibold hover:bg-white hover:text-black transition-all"
+                className="border-3 border-lime-400 text-lime-400 bg-transparent px-10 py-6 text-xl font-bold hover:bg-lime-400 hover:text-black transition-all shadow-lg"
               >
                 Watch Demo
               </Button>
             </div>
             
-            <div className="mt-12">
-              <p className="text-gray-400 text-sm mb-4">Trusted by high-growth B2B teams</p>
-              <div className="flex justify-center items-center space-x-8 opacity-60 text-white font-semibold">
+            <div className="mt-16">
+              <p className="text-gray-400 text-lg mb-6">Trusted by high-growth B2B teams</p>
+              <div className="flex justify-center items-center space-x-12 opacity-60 text-white font-semibold text-lg">
                 <div>StartupCo</div>
                 <div>TechFlow</div>
                 <div>SalesForce+</div>
@@ -188,57 +188,57 @@ export default function Home() {
       </section>
 
       {/* Problem Statement */}
-      <section className="py-20 bg-vantyge-light">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold vantyge-black mb-6">
+      <section className="py-32 bg-vantyge-light">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl md:text-6xl font-bold vantyge-black mb-10 leading-tight">
             Don't Have Time to Write on LinkedIn?
           </h2>
-          <p className="text-xl vantyge-gray mb-8">
+          <p className="text-2xl md:text-3xl vantyge-gray mb-12 font-medium">
             You're not alone — and you don't have to do it yourself.
           </p>
-          <p className="text-lg vantyge-gray max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl vantyge-gray max-w-5xl mx-auto leading-relaxed">
             If you're in B2B, LinkedIn is your most powerful growth channel. But building traction takes time, consistency, and a personal voice. Vantyge Social takes the heavy lifting off your plate so your team can shine without stress.
           </p>
         </div>
       </section>
 
       {/* Key Features */}
-      <section id="features" className="py-20 bg-white">
+      <section id="features" className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold vantyge-black mb-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-bold vantyge-black mb-10 leading-tight">
               Vantyge Social Helps You:
             </h2>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center p-8 hover:shadow-lg transition-shadow">
-              <CardContent className="pt-6">
-                <div className="w-16 h-16 bg-vantyge-blue rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="w-8 h-8 text-white" />
+          <div className="grid md:grid-cols-3 gap-12">
+            <Card className="text-center p-12 hover:shadow-2xl transition-all duration-300 hover:scale-105">
+              <CardContent className="pt-8">
+                <div className="w-20 h-20 bg-lime-400 rounded-full flex items-center justify-center mx-auto mb-8">
+                  <Users className="w-10 h-10 text-black" />
                 </div>
-                <h3 className="text-xl font-bold vantyge-black mb-4">Find your team's voice</h3>
-                <p className="vantyge-gray">Discover and amplify each team member's unique perspective and expertise</p>
+                <h3 className="text-2xl font-bold vantyge-black mb-6">Find your team's voice</h3>
+                <p className="vantyge-gray text-lg leading-relaxed">Discover and amplify each team member's unique perspective and expertise</p>
               </CardContent>
             </Card>
             
-            <Card className="text-center p-8 hover:shadow-lg transition-shadow">
-              <CardContent className="pt-6">
-                <div className="w-16 h-16 bg-vantyge-success rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Edit3 className="w-8 h-8 text-white" />
+            <Card className="text-center p-12 hover:shadow-2xl transition-all duration-300 hover:scale-105">
+              <CardContent className="pt-8">
+                <div className="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-8">
+                  <Edit3 className="w-10 h-10 text-black" />
                 </div>
-                <h3 className="text-xl font-bold vantyge-black mb-4">Express ideas clearly and engagingly</h3>
-                <p className="vantyge-gray">Transform complex thoughts into compelling LinkedIn content that resonates</p>
+                <h3 className="text-2xl font-bold vantyge-black mb-6">Express ideas clearly and engagingly</h3>
+                <p className="vantyge-gray text-lg leading-relaxed">Transform complex thoughts into compelling LinkedIn content that resonates</p>
               </CardContent>
             </Card>
             
-            <Card className="text-center p-8 hover:shadow-lg transition-shadow">
-              <CardContent className="pt-6">
-                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Target className="w-8 h-8 text-white" />
+            <Card className="text-center p-12 hover:shadow-2xl transition-all duration-300 hover:scale-105">
+              <CardContent className="pt-8">
+                <div className="w-20 h-20 bg-green-400 rounded-full flex items-center justify-center mx-auto mb-8">
+                  <Target className="w-10 h-10 text-black" />
                 </div>
-                <h3 className="text-xl font-bold vantyge-black mb-4">Share authentic content with your target audience</h3>
-                <p className="vantyge-gray">Reach the right people with content that builds trust and drives engagement</p>
+                <h3 className="text-2xl font-bold vantyge-black mb-6">Share authentic content with your target audience</h3>
+                <p className="vantyge-gray text-lg leading-relaxed">Reach the right people with content that builds trust and drives engagement</p>
               </CardContent>
             </Card>
           </div>
@@ -246,70 +246,70 @@ export default function Home() {
       </section>
 
       {/* Workflow Section */}
-      <section id="workflow" className="py-20 bg-vantyge-light">
+      <section id="workflow" className="py-32 bg-vantyge-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold vantyge-black mb-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-bold vantyge-black mb-10 leading-tight">
               The 10/80/10 Workflow
             </h2>
-            <p className="text-xl vantyge-gray max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl vantyge-gray max-w-4xl mx-auto leading-relaxed">
               Start with a seed (10%), let AI draft (80%), finish with review (10%). Fast, scalable content that sounds genuinely human.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="workflow-step bg-white p-8 shadow-sm">
-              <CardContent className="pt-6">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-vantyge-blue text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
+          <div className="grid md:grid-cols-3 gap-12">
+            <Card className="workflow-step bg-white p-12 shadow-lg hover:shadow-2xl transition-all duration-300">
+              <CardContent className="pt-8">
+                <div className="flex items-center mb-8">
+                  <div className="w-16 h-16 bg-lime-400 text-black rounded-full flex items-center justify-center font-bold text-xl mr-6">
                     10%
                   </div>
-                  <h3 className="text-xl font-bold vantyge-black">Seed Your Ideas</h3>
+                  <h3 className="text-2xl font-bold vantyge-black">Seed Your Ideas</h3>
                 </div>
-                <p className="vantyge-gray mb-6">
+                <p className="vantyge-gray mb-8 text-lg leading-relaxed">
                   Share a brief thought, insight, or topic. Just a few sentences to get started.
                 </p>
-                <div className="bg-vantyge-light p-4 rounded-lg text-sm vantyge-gray italic">
+                <div className="bg-vantyge-light p-6 rounded-lg text-lg vantyge-gray italic">
                   "Just finished reading about the impact of AI on B2B sales cycles..."
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="workflow-step bg-white p-8 shadow-sm">
-              <CardContent className="pt-6">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-vantyge-success text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
+            <Card className="workflow-step bg-white p-12 shadow-lg hover:shadow-2xl transition-all duration-300">
+              <CardContent className="pt-8">
+                <div className="flex items-center mb-8">
+                  <div className="w-16 h-16 bg-yellow-400 text-black rounded-full flex items-center justify-center font-bold text-xl mr-6">
                     80%
                   </div>
-                  <h3 className="text-xl font-bold vantyge-black">AI Crafts Content</h3>
+                  <h3 className="text-2xl font-bold vantyge-black">AI Crafts Content</h3>
                 </div>
-                <p className="vantyge-gray mb-6">
+                <p className="vantyge-gray mb-8 text-lg leading-relaxed">
                   Our AI expands your idea into engaging, authentic LinkedIn content that matches your voice.
                 </p>
-                <div className="bg-vantyge-light p-4 rounded-lg">
-                  <div className="flex items-center vantyge-success mb-2">
-                    <CheckCircle className="w-4 h-4 mr-2" />
-                    <span className="text-sm font-medium">Draft generated in seconds</span>
+                <div className="bg-vantyge-light p-6 rounded-lg">
+                  <div className="flex items-center text-green-600 mb-2">
+                    <CheckCircle className="w-5 h-5 mr-3" />
+                    <span className="text-lg font-medium">Draft generated in seconds</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="workflow-step bg-white p-8 shadow-sm">
-              <CardContent className="pt-6">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">
+            <Card className="workflow-step bg-white p-12 shadow-lg hover:shadow-2xl transition-all duration-300">
+              <CardContent className="pt-8">
+                <div className="flex items-center mb-8">
+                  <div className="w-16 h-16 bg-green-400 text-black rounded-full flex items-center justify-center font-bold text-xl mr-6">
                     10%
                   </div>
-                  <h3 className="text-xl font-bold vantyge-black">Review & Publish</h3>
+                  <h3 className="text-2xl font-bold vantyge-black">Review & Publish</h3>
                 </div>
-                <p className="vantyge-gray mb-6">
+                <p className="vantyge-gray mb-8 text-lg leading-relaxed">
                   Quick review, light edits if needed, then schedule or publish directly to LinkedIn.
                 </p>
-                <div className="bg-vantyge-light p-4 rounded-lg">
-                  <div className="flex items-center text-purple-600 mb-2">
-                    <CheckCircle className="w-4 h-4 mr-2" />
-                    <span className="text-sm font-medium">Ready to publish</span>
+                <div className="bg-vantyge-light p-6 rounded-lg">
+                  <div className="flex items-center text-lime-600 mb-2">
+                    <CheckCircle className="w-5 h-5 mr-3" />
+                    <span className="text-lg font-medium">Ready to publish</span>
                   </div>
                 </div>
               </CardContent>
@@ -319,15 +319,15 @@ export default function Home() {
       </section>
 
       {/* Benefits Section */}
-      <section id="benefits" className="py-20 bg-white">
+      <section id="benefits" className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold vantyge-black mb-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-bold vantyge-black mb-10 leading-tight">
               Let AI Handle 80% — You Focus on the 20% That Matters
             </h2>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             {[
               "Post consistently and grow your following",
               "Turn employees into trusted industry voices",
@@ -336,13 +336,13 @@ export default function Home() {
               "Generate inbound leads — without extra workload",
               "Start turning your team into LinkedIn powerhouses"
             ].map((benefit, index) => (
-              <div key={index} className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-vantyge-success rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <CheckCircle className="w-5 h-5 text-white" />
+              <div key={index} className="flex items-start space-x-6 p-6 hover:bg-gray-50 rounded-lg transition-all duration-300">
+                <div className="w-12 h-12 bg-lime-400 rounded-full flex items-center justify-center flex-shrink-0 mt-2">
+                  <CheckCircle className="w-7 h-7 text-black" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold vantyge-black mb-2">{benefit}</h3>
-                  <p className="vantyge-gray">
+                  <h3 className="text-xl font-bold vantyge-black mb-4 leading-tight">{benefit}</h3>
+                  <p className="vantyge-gray text-lg leading-relaxed">
                     {index === 0 && "Maintain regular presence without the daily grind"}
                     {index === 1 && "Build thought leadership across your entire team"}
                     {index === 2 && "Reach prospects through authentic, valuable content"}
@@ -358,32 +358,32 @@ export default function Home() {
       </section>
 
       {/* Features Deep Dive */}
-      <section className="py-20 bg-vantyge-light">
+      <section className="py-32 bg-vantyge-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold vantyge-black mb-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-bold vantyge-black mb-10 leading-tight">
               What You Get
             </h2>
-            <p className="text-xl vantyge-gray">
+            <p className="text-xl md:text-2xl vantyge-gray">
               Everything you need to transform your team into LinkedIn thought leaders
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-12">
               {[
-                { icon: FileText, title: "Personalized LinkedIn Templates", desc: "Proven, high-engagement formats updated regularly to match current trends", color: "bg-vantyge-blue" },
-                { icon: Shield, title: "Full Editorial Control", desc: "Every post can be reviewed or edited before publishing to maintain your brand voice", color: "bg-vantyge-success" },
-                { icon: BarChart3, title: "Insightful Metrics", desc: "See what's working and measure real marketing impact across your entire team", color: "bg-purple-600" },
-                { icon: Zap, title: "Autopilot Mode", desc: "Train the AI, then automate up to 95% of post creation — with team review still in control", color: "bg-orange-500" }
+                { icon: FileText, title: "Personalized LinkedIn Templates", desc: "Proven, high-engagement formats updated regularly to match current trends", color: "bg-lime-400" },
+                { icon: Shield, title: "Full Editorial Control", desc: "Every post can be reviewed or edited before publishing to maintain your brand voice", color: "bg-yellow-400" },
+                { icon: BarChart3, title: "Insightful Metrics", desc: "See what's working and measure real marketing impact across your entire team", color: "bg-green-400" },
+                { icon: Zap, title: "Autopilot Mode", desc: "Train the AI, then automate up to 95% of post creation — with team review still in control", color: "bg-orange-400" }
               ].map((feature, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className={`w-12 h-12 ${feature.color} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                    <feature.icon className="w-6 h-6 text-white" />
+                <div key={index} className="flex items-start space-x-6 p-6 hover:bg-white rounded-lg transition-all duration-300">
+                  <div className={`w-16 h-16 ${feature.color} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                    <feature.icon className="w-8 h-8 text-black" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold vantyge-black mb-2">{feature.title}</h3>
-                    <p className="vantyge-gray">{feature.desc}</p>
+                    <h3 className="text-2xl font-bold vantyge-black mb-4">{feature.title}</h3>
+                    <p className="vantyge-gray text-lg leading-relaxed">{feature.desc}</p>
                   </div>
                 </div>
               ))}
@@ -436,13 +436,13 @@ export default function Home() {
       </section>
 
       {/* Team Focus Section */}
-      <section className="py-20 bg-white">
+      <section className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold vantyge-black mb-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-bold vantyge-black mb-10 leading-tight">
               Built for Teams, Not Just Creators
             </h2>
-            <p className="text-xl vantyge-gray max-w-4xl mx-auto">
+            <p className="text-xl md:text-2xl vantyge-gray max-w-5xl mx-auto leading-relaxed">
               Vantyge Social is designed for marketing teams managing content across multiple employees. One marketer can drive visibility for dozens of team members — no account chasing or manual effort required.
             </p>
           </div>
