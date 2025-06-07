@@ -174,15 +174,7 @@ export default function Home() {
               </Button>
             </div>
             
-            <div className="mt-16">
-              <p className="text-gray-400 text-lg mb-6">Trusted by high-growth B2B teams</p>
-              <div className="flex justify-center items-center space-x-12 opacity-60 text-white font-semibold text-lg">
-                <div>StartupCo</div>
-                <div>TechFlow</div>
-                <div>SalesForce+</div>
-                <div>GrowthLab</div>
-              </div>
-            </div>
+
           </div>
         </div>
       </section>
