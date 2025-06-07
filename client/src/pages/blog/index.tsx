@@ -3,8 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { Calendar, Clock, ArrowRight, User } from "lucide-react";
 import type { BlogPost } from "@shared/schema";
+import { getBlogThumbnail } from "@/components/blog-hero-image";
 
 export default function BlogIndex() {
   const { data: posts, isLoading, error } = useQuery<BlogPost[]>({
@@ -60,48 +61,122 @@ export default function BlogIndex() {
           )}
 
           {posts && posts.length > 0 && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((post) => (
-                <Card key={post.id} className="h-full hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6 h-full flex flex-col">
-                    <div className="flex items-center justify-between mb-4">
-                      <Badge variant="secondary" className="text-xs">
-                        {post.category}
-                      </Badge>
-                      {post.featured === "true" && (
-                        <Badge className="bg-lime-400 text-black text-xs">Featured</Badge>
-                      )}
-                    </div>
-                    
-                    <h3 className="text-xl font-bold vantyge-black mb-3">
-                      {post.title}
-                    </h3>
-                    
-                    <p className="vantyge-gray mb-4 flex-grow">
-                      {post.excerpt}
-                    </p>
-                    
-                    <div className="flex items-center justify-between text-sm vantyge-gray mb-4">
-                      <div className="flex items-center">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        {new Date(post.publishedAt).toLocaleDateString()}
+            <>
+              {/* Featured Post */}
+              {posts.find(post => post.featured === "true") && (
+                <div className="mb-16">
+                  <h2 className="text-3xl font-bold vantyge-black mb-8">Featured Article</h2>
+                  {(() => {
+                    const featuredPost = posts.find(post => post.featured === "true")!;
+                    return (
+                      <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
+                        <div className="md:flex">
+                          <div className="md:w-1/2">
+                            <img 
+                              src={getBlogThumbnail(featuredPost.slug)} 
+                              alt={featuredPost.title}
+                              className="w-full h-64 md:h-full object-cover"
+                            />
+                          </div>
+                          <div className="md:w-1/2 p-8">
+                            <div className="flex items-center gap-3 mb-4">
+                              <Badge className="bg-lime-400 text-black">Featured</Badge>
+                              <Badge variant="secondary">{featuredPost.category}</Badge>
+                            </div>
+                            
+                            <h3 className="text-3xl font-bold vantyge-black mb-4 leading-tight">
+                              {featuredPost.title}
+                            </h3>
+                            
+                            <p className="vantyge-gray mb-6 text-lg leading-relaxed">
+                              {featuredPost.excerpt}
+                            </p>
+                            
+                            <div className="flex items-center justify-between text-sm vantyge-gray mb-6">
+                              <div className="flex items-center gap-4">
+                                <div className="flex items-center">
+                                  <User className="w-4 h-4 mr-1" />
+                                  Vantyge Team
+                                </div>
+                                <div className="flex items-center">
+                                  <Calendar className="w-4 h-4 mr-1" />
+                                  {new Date(featuredPost.publishedAt).toLocaleDateString()}
+                                </div>
+                                <div className="flex items-center">
+                                  <Clock className="w-4 h-4 mr-1" />
+                                  {featuredPost.readTime}
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <Link href={`/blog/${featuredPost.slug}`}>
+                              <Button className="bg-lime-400 text-black hover:bg-lime-300 font-bold">
+                                Read Full Article
+                                <ArrowRight className="w-4 h-4 ml-2" />
+                              </Button>
+                            </Link>
+                          </div>
+                        </div>
+                      </Card>
+                    );
+                  })()}
+                </div>
+              )}
+
+              {/* All Posts Grid */}
+              <div>
+                <h2 className="text-3xl font-bold vantyge-black mb-8">All Articles</h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {posts.map((post) => (
+                    <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
+                      <div className="relative">
+                        <img 
+                          src={getBlogThumbnail(post.slug)} 
+                          alt={post.title}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute top-4 left-4 flex gap-2">
+                          <Badge variant="secondary" className="bg-white/90 text-black">
+                            {post.category}
+                          </Badge>
+                          {post.featured === "true" && (
+                            <Badge className="bg-lime-400 text-black">Featured</Badge>
+                          )}
+                        </div>
                       </div>
-                      <div className="flex items-center">
-                        <Clock className="w-4 h-4 mr-1" />
-                        {post.readTime}
-                      </div>
-                    </div>
-                    
-                    <Link href={`/blog/${post.slug}`}>
-                      <Button variant="ghost" className="w-full justify-between p-0 h-auto text-left">
-                        Read Article
-                        <ArrowRight className="w-4 h-4" />
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                      
+                      <CardContent className="p-6">
+                        <h3 className="text-xl font-bold vantyge-black mb-3 line-clamp-2 leading-tight">
+                          {post.title}
+                        </h3>
+                        
+                        <p className="vantyge-gray mb-4 line-clamp-3 leading-relaxed">
+                          {post.excerpt}
+                        </p>
+                        
+                        <div className="flex items-center justify-between text-sm vantyge-gray mb-4">
+                          <div className="flex items-center">
+                            <Calendar className="w-4 h-4 mr-1" />
+                            {new Date(post.publishedAt).toLocaleDateString()}
+                          </div>
+                          <div className="flex items-center">
+                            <Clock className="w-4 h-4 mr-1" />
+                            {post.readTime}
+                          </div>
+                        </div>
+                        
+                        <Link href={`/blog/${post.slug}`}>
+                          <Button variant="ghost" className="w-full justify-between hover:bg-lime-50 group">
+                            Read Article
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </Button>
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </>
           )}
 
           {posts && posts.length === 0 && (
