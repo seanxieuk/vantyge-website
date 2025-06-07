@@ -508,7 +508,7 @@ export default function Home() {
               ].map((item, index) => (
                 <div key={index} className="flex items-start space-x-4">
                   <div className={`w-8 h-8 ${item.color} rounded-full flex items-center justify-center flex-shrink-0`}>
-                    <span className="text-white font-bold text-sm">{item.step}</span>
+                    <span className="text-black font-bold text-sm">{item.step}</span>
                   </div>
                   <div>
                     <h3 className="font-semibold vantyge-black mb-2">{item.title}</h3>
