@@ -9,9 +9,19 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 console.log('Starting deployment build process...');
 
-// Step 1: Run the build command
+// Step 1: Clean previous build
 try {
-  console.log('Building application...');
+  if (fs.existsSync(path.join(__dirname, 'dist'))) {
+    console.log('Cleaning previous build...');
+    fs.rmSync(path.join(__dirname, 'dist'), { recursive: true, force: true });
+  }
+} catch (error) {
+  console.log('No previous build to clean');
+}
+
+// Step 2: Run the build commands
+try {
+  console.log('Building client application...');
   execSync('vite build', { 
     stdio: 'inherit',
     cwd: path.join(__dirname, 'client')
@@ -27,47 +37,13 @@ try {
   process.exit(1);
 }
 
-// Step 2: Copy static files to deployment location
+// Step 3: Fix deployment structure
+console.log('Fixing deployment structure...');
+
 const sourceDir = path.join(__dirname, 'dist', 'public');
 const targetDir = path.join(__dirname, 'dist');
 
-if (fs.existsSync(sourceDir)) {
-  console.log('Copying static files for deployment...');
-  
-  try {
-    const files = fs.readdirSync(sourceDir);
-    
-    files.forEach(file => {
-      const sourcePath = path.join(sourceDir, file);
-      const targetPath = path.join(targetDir, file);
-      
-      if (fs.statSync(sourcePath).isFile()) {
-        // Don't overwrite server files
-        if (!fs.existsSync(targetPath) || file.endsWith('.html') || file.endsWith('.css') || file.startsWith('assets/')) {
-          fs.copyFileSync(sourcePath, targetPath);
-          console.log(`Copied: ${file}`);
-        }
-      } else if (fs.statSync(sourcePath).isDirectory()) {
-        // Copy directories recursively
-        if (!fs.existsSync(targetPath)) {
-          fs.mkdirSync(targetPath, { recursive: true });
-        }
-        copyDirectory(sourcePath, targetPath);
-      }
-    });
-    
-    console.log('Deployment build completed successfully!');
-    console.log('Static files are now in the correct location for deployment.');
-    
-  } catch (error) {
-    console.error('Error copying files:', error);
-    process.exit(1);
-  }
-} else {
-  console.warn('No static files found to copy. Build may have failed.');
-}
-
-function copyDirectory(src, dest) {
+function copyDirectoryRecursive(src, dest) {
   const files = fs.readdirSync(src);
   files.forEach(file => {
     const srcPath = path.join(src, file);
@@ -77,9 +53,52 @@ function copyDirectory(src, dest) {
       if (!fs.existsSync(destPath)) {
         fs.mkdirSync(destPath, { recursive: true });
       }
-      copyDirectory(srcPath, destPath);
+      copyDirectoryRecursive(srcPath, destPath);
     } else {
       fs.copyFileSync(srcPath, destPath);
     }
   });
+}
+
+if (fs.existsSync(sourceDir)) {
+  const files = fs.readdirSync(sourceDir);
+  
+  files.forEach(file => {
+    const sourcePath = path.join(sourceDir, file);
+    const targetPath = path.join(targetDir, file);
+    
+    if (fs.statSync(sourcePath).isFile()) {
+      // Don't overwrite server index.js
+      if (file !== 'index.js') {
+        fs.copyFileSync(sourcePath, targetPath);
+        console.log(`✓ Copied: ${file}`);
+      }
+    } else if (fs.statSync(sourcePath).isDirectory()) {
+      if (!fs.existsSync(targetPath)) {
+        fs.mkdirSync(targetPath, { recursive: true });
+      }
+      copyDirectoryRecursive(sourcePath, targetPath);
+      console.log(`✓ Copied directory: ${file}`);
+    }
+  });
+  
+  // Clean up the public directory since files are now in dist
+  fs.rmSync(sourceDir, { recursive: true, force: true });
+  console.log('✓ Cleaned up temporary public directory');
+  
+  // Verify deployment structure
+  const indexPath = path.join(targetDir, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    console.log('✅ Deployment structure is correct - index.html found in dist/');
+  } else {
+    console.error('❌ index.html not found in dist/ - deployment may fail');
+    process.exit(1);
+  }
+  
+  console.log('✅ Build completed successfully!');
+  console.log('📁 Files are ready for deployment in the dist/ directory');
+  
+} else {
+  console.error('❌ Build output not found in dist/public/');
+  process.exit(1);
 }

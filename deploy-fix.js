@@ -24,6 +24,13 @@ function fixDeploymentStructure() {
   console.log('Found build output, fixing deployment structure...');
   
   try {
+    // First, backup any existing server files in dist
+    const distFiles = fs.existsSync(targetDir) ? fs.readdirSync(targetDir) : [];
+    const serverFiles = distFiles.filter(file => 
+      file.endsWith('.js') && !file.includes('assets') && file !== 'index.html'
+    );
+    
+    // Copy all client files from dist/public to dist
     const files = fs.readdirSync(sourceDir);
     
     files.forEach(file => {
@@ -31,30 +38,37 @@ function fixDeploymentStructure() {
       const targetPath = path.join(targetDir, file);
       
       if (fs.statSync(sourcePath).isFile()) {
-        // Don't overwrite server files
-        if (!fs.existsSync(targetPath) || 
-            file.endsWith('.html') || 
-            file.endsWith('.css') || 
-            file.startsWith('assets')) {
+        // Always copy client files, but preserve server files
+        if (!serverFiles.includes(file)) {
           fs.copyFileSync(sourcePath, targetPath);
-          console.log(`✓ Moved: ${file}`);
+          console.log(`✓ Copied: ${file}`);
         } else {
-          console.log(`⚠ Skipped: ${file} (server file)`);
+          console.log(`⚠ Preserved server file: ${file}`);
         }
       } else if (fs.statSync(sourcePath).isDirectory()) {
-        // Copy directories recursively
+        // Copy directories recursively (like assets folder)
         if (!fs.existsSync(targetPath)) {
           fs.mkdirSync(targetPath, { recursive: true });
         }
         copyDirectoryRecursive(sourcePath, targetPath);
+        console.log(`✓ Copied directory: ${file}`);
       }
     });
+    
+    // Verify index.html is in the right place
+    const indexPath = path.join(targetDir, 'index.html');
+    if (fs.existsSync(indexPath)) {
+      console.log('✅ index.html found in dist/ - deployment structure is correct');
+    } else {
+      console.error('❌ index.html not found in dist/ - deployment may fail');
+    }
     
     console.log('✅ Deployment structure fixed successfully!');
     console.log('📁 Static files are now in the correct location for deployment.');
     
   } catch (error) {
     console.error('❌ Error fixing deployment structure:', error.message);
+    process.exit(1);
   }
 }
 
