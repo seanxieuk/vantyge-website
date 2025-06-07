@@ -13,8 +13,8 @@
   --card-foreground: hsl(0, 0%, 0%);
   --border: hsl(0, 0%, 90%);
   --input: hsl(0, 0%, 90%);
-  --primary: hsl(221, 100%, 50%);
-  --primary-foreground: hsl(0, 0%, 100%);
+  --primary: hsl(68, 85%, 50%);
+  --primary-foreground: hsl(0, 0%, 0%);
   --secondary: hsl(0, 0%, 96%);
   --secondary-foreground: hsl(0, 0%, 9%);
   --accent: hsl(0, 0%, 96%);
@@ -23,7 +23,9 @@
   --destructive-foreground: hsl(0, 0%, 98%);
   --ring: hsl(0, 0%, 0%);
   --radius: 0.5rem;
-  --vantyge-blue: hsl(221, 100%, 50%);
+  --vantyge-primary: hsl(68, 85%, 50%);
+  --vantyge-primary-dark: hsl(68, 75%, 45%);
+  --vantyge-accent: hsl(85, 70%, 55%);
   --vantyge-black: hsl(0, 0%, 0%);
   --vantyge-gray: hsl(0, 0%, 45%);
   --vantyge-light: hsl(0, 0%, 97%);
@@ -41,8 +43,8 @@
   --card-foreground: hsl(0, 0%, 98%);
   --border: hsl(240, 4%, 16%);
   --input: hsl(240, 4%, 16%);
-  --primary: hsl(221, 100%, 50%);
-  --primary-foreground: hsl(0, 0%, 100%);
+  --primary: hsl(68, 85%, 50%);
+  --primary-foreground: hsl(0, 0%, 0%);
   --secondary: hsl(240, 4%, 16%);
   --secondary-foreground: hsl(0, 0%, 98%);
   --accent: hsl(240, 4%, 16%);
@@ -79,8 +81,24 @@
     color: var(--vantyge-blue);
   }
 
-  .bg-vantyge-blue {
-    background-color: var(--vantyge-blue);
+  .vantyge-primary {
+    color: var(--vantyge-primary);
+  }
+
+  .bg-vantyge-primary {
+    background-color: var(--vantyge-primary);
+  }
+
+  .bg-vantyge-primary-dark {
+    background-color: var(--vantyge-primary-dark);
+  }
+
+  .vantyge-accent {
+    color: var(--vantyge-accent);
+  }
+
+  .bg-vantyge-accent {
+    background-color: var(--vantyge-accent);
   }
 
   .vantyge-black {
@@ -113,5 +131,25 @@
 
   .bg-vantyge-success {
     background-color: var(--vantyge-success);
+  }
+
+  .text-highlight {
+    background: linear-gradient(120deg, var(--vantyge-primary) 0%, var(--vantyge-primary) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 40%;
+    background-position: 0 85%;
+    color: var(--vantyge-black);
+    font-weight: 600;
+    padding: 0 4px;
+  }
+
+  .text-highlight-accent {
+    background: linear-gradient(120deg, var(--vantyge-accent) 0%, var(--vantyge-accent) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 40%;
+    background-position: 0 85%;
+    color: var(--vantyge-black);
+    font-weight: 600;
+    padding: 0 4px;
   }
 }
