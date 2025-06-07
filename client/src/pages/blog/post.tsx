@@ -3,8 +3,122 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Share2, ArrowRight } from "lucide-react";
 import type { BlogPost } from "@shared/schema";
+
+function BlogContent({ content }: { content: string }) {
+  if (!content) return null;
+
+  const formatContent = (text: string) => {
+    const lines = text.split('\n');
+    let inList = false;
+    const elements: JSX.Element[] = [];
+
+    lines.forEach((line, index) => {
+      const trimmedLine = line.trim();
+      
+      if (trimmedLine === '') {
+        if (inList) {
+          inList = false;
+        }
+        elements.push(<div key={index} className="h-4" />);
+        return;
+      }
+
+      if (trimmedLine.startsWith('## ')) {
+        if (inList) inList = false;
+        elements.push(
+          <h2 key={index} className="text-3xl font-bold vantyge-black mt-12 mb-6 leading-tight">
+            {trimmedLine.replace('## ', '')}
+          </h2>
+        );
+      } else if (trimmedLine.startsWith('### ')) {
+        if (inList) inList = false;
+        elements.push(
+          <h3 key={index} className="text-2xl font-bold vantyge-black mt-10 mb-4 leading-tight">
+            {trimmedLine.replace('### ', '')}
+          </h3>
+        );
+      } else if (trimmedLine.startsWith('**') && trimmedLine.endsWith('**')) {
+        if (inList) inList = false;
+        elements.push(
+          <h4 key={index} className="text-xl font-bold vantyge-black mt-8 mb-4">
+            {trimmedLine.replace(/\*\*/g, '')}
+          </h4>
+        );
+      } else if (trimmedLine.startsWith('- ')) {
+        if (!inList) {
+          inList = true;
+        }
+        elements.push(
+          <li key={index} className="vantyge-gray mb-2 ml-6 list-disc leading-relaxed">
+            {trimmedLine.replace('- ', '')}
+          </li>
+        );
+      } else {
+        if (inList) inList = false;
+        // Handle bold text within paragraphs
+        const formattedText = trimmedLine.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold vantyge-black">$1</strong>');
+        elements.push(
+          <p key={index} className="vantyge-gray mb-6 leading-relaxed text-lg" 
+             dangerouslySetInnerHTML={{ __html: formattedText }} />
+        );
+      }
+    });
+
+    return elements;
+  };
+
+  return <div className="article-content">{formatContent(content)}</div>;
+}
+
+function RelatedArticles({ currentSlug }: { currentSlug: string }) {
+  const { data: allPosts } = useQuery<BlogPost[]>({
+    queryKey: ['/api/blog'],
+  });
+
+  const relatedPosts = allPosts?.filter(post => post.slug !== currentSlug).slice(0, 2) || [];
+
+  if (relatedPosts.length === 0) return null;
+
+  return (
+    <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-16">
+      <h3 className="text-2xl font-bold vantyge-black mb-8">Related Articles</h3>
+      <div className="grid md:grid-cols-2 gap-6">
+        {relatedPosts.map((post) => (
+          <Card key={post.id} className="hover:shadow-lg transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-3">
+                <Badge variant="secondary" className="text-xs">{post.category}</Badge>
+                {post.featured === "true" && (
+                  <Badge className="bg-lime-400 text-black text-xs">Featured</Badge>
+                )}
+              </div>
+              <h4 className="text-lg font-bold vantyge-black mb-3">
+                {post.title}
+              </h4>
+              <p className="vantyge-gray text-sm mb-4 line-clamp-2">
+                {post.excerpt}
+              </p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center text-xs vantyge-gray">
+                  <Clock className="w-3 h-3 mr-1" />
+                  {post.readTime}
+                </div>
+                <Link href={`/blog/${post.slug}`}>
+                  <Button variant="ghost" size="sm" className="text-xs p-0">
+                    Read More
+                    <ArrowRight className="w-3 h-3 ml-1" />
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default function BlogPost() {
   const { slug } = useParams();
@@ -96,21 +210,45 @@ export default function BlogPost() {
 
             {/* Article Body */}
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="prose prose-lg max-w-none prose-headings:vantyge-black prose-p:vantyge-gray prose-strong:vantyge-black prose-ul:vantyge-gray prose-ol:vantyge-gray">
-                <div style={{ whiteSpace: 'pre-wrap' }} className="vantyge-gray leading-relaxed">
-                  {post.content.split('\n').map((paragraph, index) => {
-                    if (paragraph.startsWith('## ')) {
-                      return <h2 key={index} className="text-2xl font-bold vantyge-black mt-8 mb-4">{paragraph.replace('## ', '')}</h2>
-                    } else if (paragraph.startsWith('### ')) {
-                      return <h3 key={index} className="text-xl font-bold vantyge-black mt-6 mb-3">{paragraph.replace('### ', '')}</h3>
-                    } else if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
-                      return <p key={index} className="font-bold vantyge-black mt-4 mb-2">{paragraph.replace(/\*\*/g, '')}</p>
-                    } else if (paragraph.startsWith('- ')) {
-                      return <li key={index} className="ml-4 mb-1">{paragraph.replace('- ', '')}</li>
-                    } else if (paragraph.trim() === '') {
-                      return <br key={index} />
+              <div className="prose prose-lg max-w-none">
+                <div className="article-content">
+                  {post.content && post.content.split('\n').map((line, index) => {
+                    const trimmedLine = line.trim();
+                    
+                    if (trimmedLine === '') {
+                      return <div key={index} className="h-4" />;
+                    }
+                    
+                    if (trimmedLine.startsWith('## ')) {
+                      return (
+                        <h2 key={index} className="text-3xl font-bold vantyge-black mt-12 mb-6 leading-tight">
+                          {trimmedLine.replace('## ', '')}
+                        </h2>
+                      );
+                    } else if (trimmedLine.startsWith('### ')) {
+                      return (
+                        <h3 key={index} className="text-2xl font-bold vantyge-black mt-10 mb-4 leading-tight">
+                          {trimmedLine.replace('### ', '')}
+                        </h3>
+                      );
+                    } else if (trimmedLine.startsWith('**') && trimmedLine.endsWith('**')) {
+                      return (
+                        <h4 key={index} className="text-xl font-bold vantyge-black mt-8 mb-4">
+                          {trimmedLine.replace(/\*\*/g, '')}
+                        </h4>
+                      );
+                    } else if (trimmedLine.startsWith('- ')) {
+                      return (
+                        <li key={index} className="vantyge-gray mb-2 ml-6 list-disc leading-relaxed">
+                          {trimmedLine.replace('- ', '')}
+                        </li>
+                      );
                     } else {
-                      return <p key={index} className="mb-4 leading-relaxed">{paragraph}</p>
+                      const formattedText = trimmedLine.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold vantyge-black">$1</strong>');
+                      return (
+                        <p key={index} className="vantyge-gray mb-6 leading-relaxed text-lg" 
+                           dangerouslySetInnerHTML={{ __html: formattedText }} />
+                      );
                     }
                   })}
                 </div>
@@ -120,34 +258,9 @@ export default function BlogPost() {
         )}
 
         {/* Related Articles */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-16">
-          <h3 className="text-2xl font-bold vantyge-black mb-8">Related Articles</h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <Badge variant="secondary" className="mb-3">Coming Soon</Badge>
-                <h4 className="text-lg font-bold vantyge-black mb-3">
-                  LinkedIn Content Strategy Guide
-                </h4>
-                <p className="vantyge-gray text-sm">
-                  Complete guide to building an effective LinkedIn content strategy for B2B teams.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <Badge variant="secondary" className="mb-3">Coming Soon</Badge>
-                <h4 className="text-lg font-bold vantyge-black mb-3">
-                  AI Writing Best Practices
-                </h4>
-                <p className="vantyge-gray text-sm">
-                  Learn how to leverage AI tools while maintaining authentic voice and quality.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
+        {post && (
+          <RelatedArticles currentSlug={post.slug} />
+        )}
       </article>
 
       {/* Footer */}
