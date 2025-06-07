@@ -18,7 +18,7 @@ import {
   TrendingUp,
   Clock
 } from "lucide-react";
-import ContactForm from "@/components/contact-form";
+import ContactForm from "../components/contact-form";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
