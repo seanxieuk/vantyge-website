@@ -147,13 +147,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
-              <span className="text-highlight">LinkedIn AI Agents</span> for<br />
-              <span className="text-highlight-accent">High-Growth B2B</span> Startups
+              <span className="text-highlight text-white">LinkedIn AI Agents</span> for<br />
+              <span className="text-highlight-accent text-white">High-Growth B2B</span> Startups
             </h1>
             
             <p className="text-xl md:text-3xl text-gray-300 max-w-5xl mx-auto mb-12 leading-relaxed">
-              <span className="text-highlight">Vantyge Social</span> plans, writes, and schedules LinkedIn posts for your entire company. 
-              Empower every team member to share <span className="text-highlight-accent">high-quality, authentic content</span> — and turn your whole company into <span className="text-highlight">LinkedIn thought leaders</span>.
+              <span className="text-highlight text-gray-300">Vantyge Social</span> plans, writes, and schedules LinkedIn posts for your entire company. 
+              Empower every team member to share <span className="text-highlight-accent text-gray-300">high-quality, authentic content</span> — and turn your whole company into <span className="text-highlight text-gray-300">LinkedIn thought leaders</span>.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">

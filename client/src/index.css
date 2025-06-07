@@ -136,20 +136,41 @@
   .text-highlight {
     background: linear-gradient(120deg, var(--vantyge-primary) 0%, var(--vantyge-primary) 100%);
     background-repeat: no-repeat;
-    background-size: 100% 40%;
-    background-position: 0 85%;
-    color: var(--vantyge-black);
+    background-size: 100% 30%;
+    background-position: 0 90%;
+    color: inherit;
     font-weight: 600;
     padding: 0 4px;
+    position: relative;
+    z-index: 1;
   }
 
   .text-highlight-accent {
     background: linear-gradient(120deg, var(--vantyge-accent) 0%, var(--vantyge-accent) 100%);
     background-repeat: no-repeat;
-    background-size: 100% 40%;
-    background-position: 0 85%;
-    color: var(--vantyge-black);
+    background-size: 100% 30%;
+    background-position: 0 90%;
+    color: inherit;
     font-weight: 600;
     padding: 0 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Special handling for dark backgrounds */
+  .hero-gradient .text-highlight,
+  .bg-black .text-highlight,
+  .bg-vantyge-black .text-highlight {
+    color: hsl(0, 0%, 100%);
+    background-size: 100% 25%;
+    background-position: 0 95%;
+  }
+
+  .hero-gradient .text-highlight-accent,
+  .bg-black .text-highlight-accent,
+  .bg-vantyge-black .text-highlight-accent {
+    color: hsl(0, 0%, 100%);
+    background-size: 100% 25%;
+    background-position: 0 95%;
   }
 }
