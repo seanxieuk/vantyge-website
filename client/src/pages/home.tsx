@@ -168,7 +168,7 @@ export default function Home() {
                 variant="outline"
                 size="lg"
                 onClick={() => setIsContactOpen(true)}
-                className="border-4 border-vantyge-primary bg-vantyge-primary/10 text-vantyge-primary px-10 py-6 text-xl font-bold hover:bg-vantyge-primary hover:text-black transition-all shadow-xl"
+                className="border-4 border-vantyge-primary bg-transparent text-white px-10 py-6 text-xl font-bold hover:bg-vantyge-primary hover:text-black transition-all shadow-xl"
               >
                 Watch Demo
               </Button>
