@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -86,6 +87,21 @@ export default function Home() {
               >
                 Benefits
               </button>
+              <div className="relative group">
+                <button className="vantyge-gray hover:text-black transition-colors flex items-center">
+                  Resources
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="py-2">
+                    <a href="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors">
+                      Blog Posts
+                    </a>
+                  </div>
+                </div>
+              </div>
               <Button 
                 onClick={() => setIsContactOpen(true)}
                 className="bg-lime-400 text-black hover:bg-lime-300 font-bold"
@@ -128,6 +144,9 @@ export default function Home() {
               >
                 Benefits
               </button>
+              <a href="/blog" className="block w-full text-left vantyge-gray hover:text-black transition-colors">
+                Resources
+              </a>
               <Button 
                 onClick={() => {
                   setIsContactOpen(true);
@@ -162,7 +181,7 @@ export default function Home() {
                 onClick={() => setIsContactOpen(true)}
                 className="bg-lime-400 text-black px-10 py-6 text-xl font-bold hover:bg-lime-300 transform hover:scale-105 transition-all shadow-lg"
               >
-                Start Free Trial
+                Get Demo
               </Button>
               <Button 
                 variant="outline"
@@ -170,7 +189,7 @@ export default function Home() {
                 onClick={() => setIsContactOpen(true)}
                 className="border-3 border-lime-400 text-lime-400 bg-transparent px-10 py-6 text-xl font-bold hover:bg-lime-400 hover:text-black transition-all shadow-lg"
               >
-                Watch Demo
+                Contact Sales
               </Button>
             </div>
             
@@ -573,7 +592,7 @@ export default function Home() {
               onClick={() => setIsContactOpen(true)}
               className="bg-lime-400 text-black px-12 py-6 text-xl font-bold hover:bg-lime-300 transform hover:scale-105 transition-all shadow-lg"
             >
-              Start Free 14-Day Trial
+              Get Demo
             </Button>
             <Button 
               variant="outline"
@@ -581,7 +600,7 @@ export default function Home() {
               onClick={() => setIsContactOpen(true)}
               className="border-3 border-lime-400 text-lime-400 bg-transparent px-12 py-6 text-xl font-bold hover:bg-lime-400 hover:text-black transition-all shadow-lg"
             >
-              Schedule Demo
+              Contact Sales
             </Button>
           </div>
           
