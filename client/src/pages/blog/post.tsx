@@ -1,10 +1,18 @@
-import { Link } from "wouter";
+import { Link, useParams } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
+import type { BlogPost } from "@shared/schema";
 
 export default function BlogPost() {
+  const { slug } = useParams();
+  
+  const { data: post, isLoading, error } = useQuery<BlogPost>({
+    queryKey: ['/api/blog', slug],
+    enabled: !!slug,
+  });
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -36,48 +44,80 @@ export default function BlogPost() {
           </Link>
         </div>
 
-        {/* Article Header */}
-        <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-          <Badge variant="secondary" className="mb-4">Coming Soon</Badge>
-          <h1 className="text-4xl md:text-5xl font-bold vantyge-black mb-6 leading-tight">
-            Blog Post Template
-          </h1>
-          
-          <div className="flex items-center justify-between mb-8 text-vantyge-gray">
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-2" />
-                Coming Soon
-              </div>
-              <div className="flex items-center">
-                <Clock className="w-4 h-4 mr-2" />
-                5 min read
-              </div>
-              <span>By Vantyge Team</span>
-            </div>
-            <Button variant="outline" size="sm">
-              <Share2 className="w-4 h-4 mr-2" />
-              Share
-            </Button>
+        {isLoading && (
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-lime-400"></div>
+            <p className="mt-4 vantyge-gray">Loading article...</p>
           </div>
-        </header>
+        )}
 
-        {/* Article Body */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg max-w-none">
-            <div className="bg-vantyge-light rounded-2xl p-12 text-center">
-              <h2 className="text-3xl font-bold vantyge-black mb-6">
-                Content Coming Soon
-              </h2>
-              <p className="text-xl vantyge-gray mb-8 max-w-2xl mx-auto leading-relaxed">
-                We're working on creating valuable content about LinkedIn AI strategies, best practices, and industry insights. Check back soon for expert advice and actionable tips.
-              </p>
+        {error && (
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
+            <h1 className="text-3xl font-bold vantyge-black mb-4">Article Not Found</h1>
+            <p className="vantyge-gray mb-8">The article you're looking for doesn't exist or has been moved.</p>
+            <Link href="/blog">
               <Button className="bg-lime-400 text-black hover:bg-lime-300 font-bold">
-                Get Notified About New Posts
+                Back to Blog
               </Button>
-            </div>
+            </Link>
           </div>
-        </div>
+        )}
+
+        {post && (
+          <>
+            {/* Article Header */}
+            <header className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+              <Badge variant="secondary" className="mb-4">{post.category}</Badge>
+              {post.featured === "true" && (
+                <Badge className="bg-lime-400 text-black mb-4 ml-2">Featured</Badge>
+              )}
+              <h1 className="text-4xl md:text-5xl font-bold vantyge-black mb-6 leading-tight">
+                {post.title}
+              </h1>
+              
+              <div className="flex items-center justify-between mb-8 text-vantyge-gray">
+                <div className="flex items-center space-x-6">
+                  <div className="flex items-center">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    {new Date(post.publishedAt).toLocaleDateString()}
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="w-4 h-4 mr-2" />
+                    {post.readTime}
+                  </div>
+                  <span>By Vantyge Team</span>
+                </div>
+                <Button variant="outline" size="sm">
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Share
+                </Button>
+              </div>
+            </header>
+
+            {/* Article Body */}
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="prose prose-lg max-w-none prose-headings:vantyge-black prose-p:vantyge-gray prose-strong:vantyge-black prose-ul:vantyge-gray prose-ol:vantyge-gray">
+                <div style={{ whiteSpace: 'pre-wrap' }} className="vantyge-gray leading-relaxed">
+                  {post.content.split('\n').map((paragraph, index) => {
+                    if (paragraph.startsWith('## ')) {
+                      return <h2 key={index} className="text-2xl font-bold vantyge-black mt-8 mb-4">{paragraph.replace('## ', '')}</h2>
+                    } else if (paragraph.startsWith('### ')) {
+                      return <h3 key={index} className="text-xl font-bold vantyge-black mt-6 mb-3">{paragraph.replace('### ', '')}</h3>
+                    } else if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+                      return <p key={index} className="font-bold vantyge-black mt-4 mb-2">{paragraph.replace(/\*\*/g, '')}</p>
+                    } else if (paragraph.startsWith('- ')) {
+                      return <li key={index} className="ml-4 mb-1">{paragraph.replace('- ', '')}</li>
+                    } else if (paragraph.trim() === '') {
+                      return <br key={index} />
+                    } else {
+                      return <p key={index} className="mb-4 leading-relaxed">{paragraph}</p>
+                    }
+                  })}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Related Articles */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-16">
