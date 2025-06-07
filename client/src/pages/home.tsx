@@ -88,7 +88,7 @@ export default function Home() {
               </button>
               <Button 
                 onClick={() => setIsContactOpen(true)}
-                className="bg-vantyge-blue text-white hover:bg-blue-700"
+                className="bg-lime-400 text-black hover:bg-lime-300 font-bold"
               >
                 Get Demo
               </Button>
@@ -133,7 +133,7 @@ export default function Home() {
                   setIsContactOpen(true);
                   setIsMenuOpen(false);
                 }}
-                className="w-full bg-vantyge-blue text-white hover:bg-blue-700"
+                className="w-full bg-lime-400 text-black hover:bg-lime-300 font-bold"
               >
                 Get Demo
               </Button>
@@ -490,17 +490,17 @@ export default function Home() {
             
             <div className="space-y-6">
               {[
-                { step: "1", title: "Centralized Management", desc: "Manage all team members' LinkedIn content from one dashboard", color: "bg-vantyge-blue" },
-                { step: "2", title: "Scale Effortlessly", desc: "One marketer can handle content for dozens of team members", color: "bg-vantyge-success" },
-                { step: "3", title: "Maintain Brand Consistency", desc: "Ensure all content aligns with your company's voice and values", color: "bg-purple-600" }
+                { step: "1", title: "Centralized Management", desc: "Manage all team members' LinkedIn content from one dashboard", color: "bg-lime-400" },
+                { step: "2", title: "Scale Effortlessly", desc: "One marketer can handle content for dozens of team members", color: "bg-yellow-400" },
+                { step: "3", title: "Maintain Brand Consistency", desc: "Ensure all content aligns with your company's voice and values", color: "bg-green-400" }
               ].map((item, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className={`w-8 h-8 ${item.color} rounded-full flex items-center justify-center flex-shrink-0`}>
-                    <span className="text-white font-bold text-sm">{item.step}</span>
+                <div key={index} className="flex items-start space-x-6 p-6">
+                  <div className={`w-12 h-12 ${item.color} rounded-full flex items-center justify-center flex-shrink-0`}>
+                    <span className="text-black font-bold text-lg">{item.step}</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold vantyge-black mb-2">{item.title}</h3>
-                    <p className="vantyge-gray">{item.desc}</p>
+                    <h3 className="text-xl font-bold vantyge-black mb-4">{item.title}</h3>
+                    <p className="vantyge-gray text-lg leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -510,53 +510,53 @@ export default function Home() {
       </section>
 
       {/* AI Voice Section */}
-      <section className="py-20 bg-vantyge-light">
+      <section className="py-32 bg-vantyge-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold vantyge-black mb-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-bold vantyge-black mb-10 leading-tight">
               AI That Writes Like You
             </h2>
-            <p className="text-xl vantyge-gray max-w-4xl mx-auto">
+            <p className="text-xl md:text-2xl vantyge-gray max-w-5xl mx-auto leading-relaxed">
               Our tuned AI captures each person's voice, making posts sound authentic and personal — never robotic. Your team's ideas, elevated.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-12">
-            <Card className="bg-white p-8 shadow-lg">
-              <CardContent className="pt-6">
-                <div className="mb-6">
-                  <h3 className="text-xl font-bold vantyge-black mb-2">Before: Generic AI</h3>
-                  <p className="vantyge-gray text-sm">Robotic, templated content</p>
+          <div className="grid md:grid-cols-2 gap-16">
+            <Card className="bg-white p-12 shadow-lg">
+              <CardContent className="pt-8">
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold vantyge-black mb-4">Before: Generic AI</h3>
+                  <p className="vantyge-gray text-lg">Robotic, templated content</p>
                 </div>
                 
-                <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                  <p className="text-gray-700 italic">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-8">
+                  <p className="text-gray-700 italic text-lg leading-relaxed">
                     "Artificial Intelligence is transforming the business landscape. Companies that adopt AI early will gain competitive advantages. Here are 5 ways AI can benefit your organization: 1) Increased efficiency 2) Better analytics..."
                   </p>
                 </div>
                 
-                <div className="mt-4 flex items-center text-red-600 text-sm">
-                  <X className="w-4 h-4 mr-2" />
+                <div className="mt-6 flex items-center text-red-600 text-lg">
+                  <X className="w-5 h-5 mr-3" />
                   Sounds robotic and impersonal
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="bg-white p-8 shadow-lg">
-              <CardContent className="pt-6">
-                <div className="mb-6">
-                  <h3 className="text-xl font-bold vantyge-black mb-2">After: Vantyge Social</h3>
-                  <p className="vantyge-gray text-sm">Personal, authentic voice</p>
+            <Card className="bg-white p-12 shadow-lg">
+              <CardContent className="pt-8">
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold vantyge-black mb-4">After: Vantyge Social</h3>
+                  <p className="vantyge-gray text-lg">Personal, authentic voice</p>
                 </div>
                 
-                <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                  <p className="text-gray-700">
+                <div className="bg-lime-50 border border-lime-300 rounded-lg p-8">
+                  <p className="text-gray-700 text-lg leading-relaxed">
                     "I've been skeptical about AI tools, but after 6 months of testing different platforms, I'm finally seeing real ROI. The key isn't replacing human creativity—it's amplifying it. Our team saves 10+ hours/week on content while actually improving quality. What's your experience? 🤔"
                   </p>
                 </div>
                 
-                <div className="mt-4 flex items-center vantyge-success text-sm">
-                  <CheckCircle className="w-4 h-4 mr-2" />
+                <div className="mt-6 flex items-center text-lime-600 text-lg">
+                  <CheckCircle className="w-5 h-5 mr-3" />
                   Authentic and engaging
                 </div>
               </CardContent>
@@ -566,20 +566,20 @@ export default function Home() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 bg-vantyge-black">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+      <section className="py-40 bg-vantyge-black">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl md:text-7xl font-bold text-white mb-12 leading-tight">
             Turn Your Team Into a Marketing Channel
           </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-3xl text-gray-200 mb-16 max-w-5xl mx-auto leading-relaxed">
             In just weeks, Vantyge Social activates your employees on LinkedIn — boosting visibility, generating leads, and building real audience trust.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-20">
             <Button 
               size="lg"
               onClick={() => setIsContactOpen(true)}
-              className="bg-vantyge-blue text-white px-8 py-4 text-lg font-semibold hover:bg-blue-700 transform hover:scale-105 transition-all"
+              className="bg-lime-400 text-black px-12 py-6 text-xl font-bold hover:bg-lime-300 transform hover:scale-105 transition-all shadow-lg"
             >
               Start Free 14-Day Trial
             </Button>
@@ -587,72 +587,72 @@ export default function Home() {
               variant="outline"
               size="lg"
               onClick={() => setIsContactOpen(true)}
-              className="border-2 border-white text-white px-8 py-4 text-lg font-semibold hover:bg-white hover:text-black transition-all"
+              className="border-3 border-lime-400 text-lime-400 bg-transparent px-12 py-6 text-xl font-bold hover:bg-lime-400 hover:text-black transition-all shadow-lg"
             >
               Schedule Demo
             </Button>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 text-center">
+          <div className="grid md:grid-cols-3 gap-16 text-center">
             <div>
-              <div className="text-3xl font-bold vantyge-blue mb-2 flex items-center justify-center">
-                <TrendingUp className="w-8 h-8 mr-2" />
+              <div className="text-5xl font-bold text-lime-400 mb-6 flex items-center justify-center">
+                <TrendingUp className="w-12 h-12 mr-4" />
                 10x
               </div>
-              <div className="text-gray-300">Faster Content Creation</div>
+              <div className="text-gray-200 text-xl">Faster Content Creation</div>
             </div>
             <div>
-              <div className="text-3xl font-bold vantyge-success mb-2 flex items-center justify-center">
-                <Bot className="w-8 h-8 mr-2" />
+              <div className="text-5xl font-bold text-yellow-400 mb-6 flex items-center justify-center">
+                <Bot className="w-12 h-12 mr-4" />
                 95%
               </div>
-              <div className="text-gray-300">Automation Rate</div>
+              <div className="text-gray-200 text-xl">Automation Rate</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-white mb-2 flex items-center justify-center">
-                <Clock className="w-8 h-8 mr-2" />
+              <div className="text-5xl font-bold text-green-400 mb-6 flex items-center justify-center">
+                <Clock className="w-12 h-12 mr-4" />
                 2 weeks
               </div>
-              <div className="text-gray-300">To See Results</div>
+              <div className="text-gray-200 text-xl">To See Results</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-white py-12 border-t border-gray-100">
+      <footer className="bg-white py-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-12">
             <div className="md:col-span-2">
-              <div className="text-2xl font-bold vantyge-black mb-4">Vantyge Social</div>
-              <p className="vantyge-gray mb-4 max-w-md">
+              <div className="text-3xl font-bold vantyge-black mb-6">Vantyge Social</div>
+              <p className="vantyge-gray mb-6 max-w-md text-lg leading-relaxed">
                 Transform your team into LinkedIn thought leaders with AI-powered content creation that sounds authentically human.
               </p>
             </div>
             
             <div>
-              <h3 className="font-semibold vantyge-black mb-4">Product</h3>
-              <ul className="space-y-2">
-                <li><button onClick={() => scrollToSection('features')} className="vantyge-gray hover:text-black">Features</button></li>
-                <li><button onClick={() => scrollToSection('workflow')} className="vantyge-gray hover:text-black">How It Works</button></li>
-                <li><button onClick={() => scrollToSection('benefits')} className="vantyge-gray hover:text-black">Benefits</button></li>
+              <h3 className="text-xl font-bold vantyge-black mb-6">Product</h3>
+              <ul className="space-y-4">
+                <li><button onClick={() => scrollToSection('features')} className="vantyge-gray hover:text-black text-lg transition-colors">Features</button></li>
+                <li><button onClick={() => scrollToSection('workflow')} className="vantyge-gray hover:text-black text-lg transition-colors">How It Works</button></li>
+                <li><button onClick={() => scrollToSection('benefits')} className="vantyge-gray hover:text-black text-lg transition-colors">Benefits</button></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold vantyge-black mb-4">Company</h3>
-              <ul className="space-y-2">
-                <li><button onClick={() => setIsContactOpen(true)} className="vantyge-gray hover:text-black">Contact</button></li>
-                <li><button onClick={() => setIsContactOpen(true)} className="vantyge-gray hover:text-black">Demo</button></li>
+              <h3 className="text-xl font-bold vantyge-black mb-6">Company</h3>
+              <ul className="space-y-4">
+                <li><button onClick={() => setIsContactOpen(true)} className="vantyge-gray hover:text-black text-lg transition-colors">Contact</button></li>
+                <li><button onClick={() => setIsContactOpen(true)} className="vantyge-gray hover:text-black text-lg transition-colors">Demo</button></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-gray-100 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="vantyge-gray text-sm">© 2024 Vantyge Social. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <button className="vantyge-gray hover:text-black text-sm">Privacy Policy</button>
-              <button className="vantyge-gray hover:text-black text-sm">Terms of Service</button>
+          <div className="border-t border-gray-100 mt-12 pt-12 flex flex-col md:flex-row justify-between items-center">
+            <p className="vantyge-gray text-lg">© 2024 Vantyge Social. All rights reserved.</p>
+            <div className="flex space-x-8 mt-6 md:mt-0">
+              <button className="vantyge-gray hover:text-black text-lg transition-colors">Privacy Policy</button>
+              <button className="vantyge-gray hover:text-black text-lg transition-colors">Terms of Service</button>
             </div>
           </div>
         </div>
