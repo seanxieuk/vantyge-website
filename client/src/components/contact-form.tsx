@@ -97,7 +97,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             <DialogDescription className="text-gray-600 mb-6">
               Your message has been sent successfully. Our team will get back to you within 24 hours to discuss how Vantyge Social can help transform your LinkedIn presence.
             </DialogDescription>
-            <Button onClick={handleClose} className="bg-vantyge-primary text-black hover:bg-vantyge-primary-dark">
+            <Button onClick={handleClose} className="bg-blue-600 hover:bg-blue-700">
               Close
             </Button>
           </div>
@@ -199,7 +199,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
               </Button>
               <Button
                 type="submit"
-                className="flex-1 bg-vantyge-primary text-black hover:bg-vantyge-primary-dark"
+                className="flex-1 bg-blue-600 hover:bg-blue-700"
                 disabled={mutation.isPending}
               >
                 {mutation.isPending ? (
