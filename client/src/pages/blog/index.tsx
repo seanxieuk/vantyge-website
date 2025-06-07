@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,12 +12,12 @@ export default function BlogIndex() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
-              <a href="/" className="text-2xl font-bold vantyge-black">Vantyge Social</a>
+              <Link href="/" className="text-2xl font-bold vantyge-black">Vantyge Social</Link>
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="/" className="vantyge-gray hover:text-black transition-colors">Home</a>
-              <a href="/blog" className="text-black font-medium">Blog</a>
+              <Link href="/" className="vantyge-gray hover:text-black transition-colors">Home</Link>
+              <Link href="/blog" className="text-black font-medium">Blog</Link>
               <Button className="bg-lime-400 text-black hover:bg-lime-300 font-bold">
                 Get Demo
               </Button>

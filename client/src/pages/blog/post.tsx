@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,12 +12,12 @@ export default function BlogPost() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
-              <a href="/" className="text-2xl font-bold vantyge-black">Vantyge Social</a>
+              <Link href="/" className="text-2xl font-bold vantyge-black">Vantyge Social</Link>
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="/" className="vantyge-gray hover:text-black transition-colors">Home</a>
-              <a href="/blog" className="vantyge-gray hover:text-black transition-colors">Blog</a>
+              <Link href="/" className="vantyge-gray hover:text-black transition-colors">Home</Link>
+              <Link href="/blog" className="vantyge-gray hover:text-black transition-colors">Blog</Link>
               <Button className="bg-lime-400 text-black hover:bg-lime-300 font-bold">
                 Get Demo
               </Button>
@@ -29,10 +30,10 @@ export default function BlogPost() {
       <article className="pt-24">
         {/* Back to Blog */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <a href="/blog" className="inline-flex items-center vantyge-gray hover:text-black transition-colors">
+          <Link href="/blog" className="inline-flex items-center vantyge-gray hover:text-black transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Blog
-          </a>
+          </Link>
         </div>
 
         {/* Article Header */}

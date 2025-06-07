@@ -96,9 +96,9 @@ export default function Home() {
                 </button>
                 <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <div className="py-2">
-                    <a href="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors">
+                    <Link href="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors">
                       Blog Posts
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -144,9 +144,9 @@ export default function Home() {
               >
                 Benefits
               </button>
-              <a href="/blog" className="block w-full text-left vantyge-gray hover:text-black transition-colors">
+              <Link href="/blog" className="block w-full text-left vantyge-gray hover:text-black transition-colors">
                 Resources
-              </a>
+              </Link>
               <Button 
                 onClick={() => {
                   setIsContactOpen(true);
